@@ -25,5 +25,11 @@ public class Stepdefs {
         SavingSimulationPage savingSimulationPage = new SavingSimulationPage(driver);
         savingSimulationPage.navigateTo("http://qa-assignment.useorigin.com.s3-website-us-east-1.amazonaws.com/");
     }
+
+    @When("I set Total Amount as {double}")
+    public void I_set_total_amount_as(double totalAmount) throws Throwable {
+        SavingSimulationPage savingSimulationPage = new SavingSimulationPage(driver);
+        savingSimulationPage.navigateTo("http://qa-assignment.useorigin.com.s3-website-us-east-1.amazonaws.com/");
+    }
 }
 

@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 
 public class SavingSimulationPage extends BasePage{
 
-    WebDriver driver;
 
     public SavingSimulationPage(WebDriver driver) {
         super(driver);
