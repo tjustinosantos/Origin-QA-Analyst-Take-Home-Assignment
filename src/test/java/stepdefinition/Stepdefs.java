@@ -11,6 +11,8 @@ import java.net.MalformedURLException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.WebDriver;
 
+import static pages.Helper.getMonthDifferenceFromNow;
+
 public class Stepdefs {
 
     WebDriver driver;
@@ -18,6 +20,12 @@ public class Stepdefs {
     @Before
     public void startUp() throws MalformedURLException {
         this.driver = new ChromeDriver();
+    }
+
+    @After
+    public void tearDown() {
+        driver.close();
+        driver.quit();
     }
 
     @Given("I access the saving simulation page")
@@ -30,6 +38,12 @@ public class Stepdefs {
     public void I_set_total_amount_as(double totalAmount) throws Throwable {
         SavingSimulationPage savingSimulationPage = new SavingSimulationPage(driver);
         savingSimulationPage.inputTotalAmount(totalAmount);
+    }
+
+    @When("I set a reachable goal by month {string} and year {int}")
+    public void I_set_total_amount_as(String month, int year) throws Throwable {
+        SavingSimulationPage savingSimulationPage = new SavingSimulationPage(driver);
+        savingSimulationPage.advanceToMonth(getMonthDifferenceFromNow(year, month));
     }
 }
 

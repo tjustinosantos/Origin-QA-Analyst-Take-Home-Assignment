@@ -3,12 +3,14 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SavingSimulationPage extends BasePage{
 
 
     private final By totalAmountTextBoxSelector = By.xpath("//*[@id=\"root\"]/div[2]/div/div[2]/div[1]/div/div/input");
 
+    private final By advanceMonthButtonElementSelector = By.cssSelector("[data-testid='reachDateIncrement']");
 
     public SavingSimulationPage(WebDriver driver) {
         super(driver);
@@ -22,6 +24,18 @@ public class SavingSimulationPage extends BasePage{
     public SavingSimulationPage inputTotalAmount(double totalAmount){
         WebElement totalAmountTextBox = driver.findElement(totalAmountTextBoxSelector);
         totalAmountTextBox.sendKeys(String.valueOf(totalAmount));
+        return new SavingSimulationPage(driver);
+    }
+
+    public SavingSimulationPage advanceToMonth(int monthsAhead){
+        int aux=1;
+        WebElement advanceMonthButton = driver.findElement(advanceMonthButtonElementSelector);
+        if(monthsAhead!=1) {
+            do {
+                aux++;
+                advanceMonthButton.click();
+            } while (aux != monthsAhead);
+        }
         return new SavingSimulationPage(driver);
     }
 }
