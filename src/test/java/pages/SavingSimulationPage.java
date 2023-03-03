@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.Arrays;
 import java.util.List;
 
 public class SavingSimulationPage extends BasePage {
@@ -57,10 +59,19 @@ public class SavingSimulationPage extends BasePage {
         return Double.parseDouble((resultLabelExtractor("goal")));
     }
 
+    public Integer getYear() {
+        return Integer.parseInt((resultLabelExtractor("year")));
+    }
+
+    public String getMonth() {
+        return resultLabelExtractor("month");
+    }
+
 
     public String resultLabelExtractor(String wantedResult) {
         List<WebElement> resultsList = driver.findElements(resultLabelElementSelector);
         String extractedText = null;
+
         switch (wantedResult) {
             case "monthly deposits":
                 extractedText = resultsList.get(0).getText().replaceAll("[^\\d]", "").replaceAll("[^\\d]", "");
@@ -68,12 +79,14 @@ public class SavingSimulationPage extends BasePage {
             case "goal":
                 extractedText = resultsList.get(1).getText().substring(1);
                 break;
-            case "date":
-                extractedText = resultsList.get(2).getText();
+            case "month":
+                extractedText = resultsList.get(2).getText().split(" ")[0];
+                break;
+            case "year":
+                extractedText = resultsList.get(2).getText().split(" ")[1];
                 break;
 
         }
-        System.out.println("Extracted = " + extractedText);
         return extractedText;
     }
 }
