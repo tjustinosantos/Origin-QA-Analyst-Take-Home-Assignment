@@ -20,6 +20,7 @@ public class Stepdefs {
     private Integer year;
     private Double totalAmount;
 
+
     @Before
     public void setUp() {
         driver = new ChromeDriver();
@@ -35,6 +36,10 @@ public class Stepdefs {
     public void givenIAccessTheSavingSimulationPage() {
         savingSimulationPage.navigateTo("http://qa-assignment.useorigin.com.s3-website-us-east-1.amazonaws.com/");
     }
+    @When("I set Total Amount with characters {string}}")
+    public void whenISetTotalAmountWithCharaters(String input) {
+        savingSimulationPage.inputTotalAmount(input);
+    }
 
     @When("I set Total Amount as {double}")
     public void whenISetTotalAmountAs(Double totalAmount) {
@@ -47,6 +52,11 @@ public class Stepdefs {
         this.month = month;
         this.year = year;
         savingSimulationPage.advanceToMonth(getMonthDifferenceFromNow(year, month));
+    }
+
+    @Then("the Total Amount is still empty by ignoring the input")
+    public void theTotalAmountIsStillEmptyByIgnoringTheInput() {
+        Assert.assertTrue(savingSimulationPage.totalAmountIsEmpty());
     }
 
     @Then("the calculated Monthly amount is {double}")

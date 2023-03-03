@@ -1,6 +1,6 @@
 Feature: Simulate a Saving Goal to Buy a House
 
-  Scenario Outline: Happy Path
+  Scenario Outline: Core calculation for different totalAmounts, months and years
     Given I access the saving simulation page
     When I set Total Amount as <totalAmount>
     And I set a reachable goal by month <month> and year <year>
@@ -18,3 +18,19 @@ Feature: Simulate a Saving Goal to Buy a House
       | 8.95        | "December" | 2024 | 0.41          |
       | 850.55      | "February" | 2026 | 23.63         |
       | 5555.55     | "November" | 2026 | 123.46        |
+
+
+
+
+  #Money input
+  #Allow only numbers
+  #Display the value formatted as money (e.g 3500.45 should be 3,500.44)
+
+ #Date input
+  #Allow only future months
+
+
+    #On focus, the users should be able to move the months by typing the Left and Right arrow keys on the keyboard
+
+   #Confirm Button
+     #Click on Confirm so it does nothing

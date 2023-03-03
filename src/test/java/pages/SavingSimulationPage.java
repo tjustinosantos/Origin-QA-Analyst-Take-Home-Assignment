@@ -37,6 +37,11 @@ public class SavingSimulationPage extends BasePage {
         return this;
     }
 
+    public SavingSimulationPage inputTotalAmount(String totalAmount) {
+        totalAmountTextBox.sendKeys(String.valueOf(totalAmount));
+        return this;
+    }
+
     public SavingSimulationPage advanceToMonth(int monthsAhead) {
         for (int i = 0; i < monthsAhead - 1; i++) {
             advanceMonthButton.click();
@@ -82,5 +87,13 @@ public class SavingSimulationPage extends BasePage {
             }
         }
         return null;
+    }
+
+    public boolean totalAmountIsEmpty() {
+        if(totalAmountTextBox.getText() == ""){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
