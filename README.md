@@ -18,17 +18,32 @@ Please access below link for detailed Test Plan
 *Chrome (latest)
 *ChromeDriver latest
 
+### Project Decisions
+* Simple [Cucumber](https://docs.cucumber.io/) feature to better describe the steps on test execution
+* [Page Object Pattern](https://martinfowler.com/bliki/PageObject.html) has been implemented for better readability. That means that each java class represent a page that Selenium Interacts with, including its mapped page elements.
+
 
 ### Installation Instructions
 
-Download and extract Chromedriver
-Start it: $chromedriver start
+Download and extract [Chromedriver](https://chromedriver.chromium.org/downloads)
+Start it: 
 
-### Running Tests locally on Desktop
+     $  chromedriver start
+
+
+
+### Running Tests locally for Desktop Tests
 
             $ mvn test
 
-### Running Tests locally on Mobile
+### Running Tests locally for Mobile tests
 
-           $ mvn clean test -DrunOnMobile=true
+           $ mvn  test -DrunOnMobile=true
 
+### Running Tests on Docker (Desktop)
+
+            $  ./run.sh
+
+### Running Tests  on Docker (Mobile)
+
+           $ ./run.sh mobile

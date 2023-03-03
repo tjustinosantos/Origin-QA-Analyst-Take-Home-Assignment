@@ -14,7 +14,16 @@ This test plan will cover the following components of the savings plan simulatio
 - The users have access to a computer or mobile device with an internet connection.
 - The users are familiar with the concept of saving towards a goal.
 
-## Test Cases:
+## Main Test Cases:
+
+### Calculation validation:
+#### Objective:
+To ensure that the calculation is correct independently on chosen year, month and value.
+#### Test Steps:
+1. Enter a numeric on total amount and select a month and year
+2. Monthly amount should be: TotalAmount/NumberOfMonthsUntilSelectedReachedDate
+
+Test automation coverage: [simulate-saving-goal-core-calculation.feature](src/test/resources/simulate-saving-goal-core-calculation.feature)
 
 ### Money input validation:
 #### Objective:
@@ -22,6 +31,8 @@ To ensure that the money input field accepts only numbers and formats the entere
 #### Test Steps:
 1. Enter a non-numeric value in the money input field and verify that the field doesn't accept it.
 2. Enter a valid number in the money input field and verify that the value is formatted as money (e.g 3500.45 should be 3,500.44).
+
+Test automation coverage: [money-input.feature](src/test/resources/money-input.feature)
 
 ### Date input validation:
 #### Objective:
@@ -32,12 +43,17 @@ To ensure that the date input field accepts only future months and can be naviga
 3. Click on the arrow buttons to navigate through the months and verify that the field updates accordingly.
 4. Focus on the date input field and verify that the users can move the months by typing the Left and Right arrow keys on the keyboard.
 
+Test automation coverage: [date-input.feature](src/test/resources/date-input.feature)
+
 ### Confirm button functionality:
 #### Objective:
 To ensure that the confirmation button is displayed and functional.
 #### Test Steps:
 1. Verify that the confirmation button is displayed on the screen.
 2. Click on the confirmation button and verify that it doesn't have any action.
+
+Test automation coverage: [money-input.feature](src/test/resources/money-input.feature)
+
 
 ## Test Coverage:
 

@@ -36,16 +36,19 @@ public class Stepdefs {
     @Before
     public void setUp() throws IOException {
         String runOnMobile = System.getProperty("runOnMobile", "false");
+        ChromeOptions options = new ChromeOptions();
+
         if (runOnMobile.equals("true")) {
-            ChromeOptions options = new ChromeOptions();
             Map<String, Object> mobileEmulation = new HashMap<>();
             mobileEmulation.put("deviceName", "iPhone X");
             options.setExperimentalOption("mobileEmulation", mobileEmulation);
-            driver = new ChromeDriver(options);
-        } else {
-            driver = new ChromeDriver();
         }
 
+        if (System.getenv("DOCKER") != null) {
+            options = new ChromeOptions().setHeadless(true);
+        }
+
+        driver = new ChromeDriver(options);
         savingSimulationPage = new SavingSimulationPage(driver);
     }
 
