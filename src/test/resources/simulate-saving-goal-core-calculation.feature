@@ -18,12 +18,3 @@ Feature: Simulate a Saving Goal to Buy a House (Core Calculation)
       | 8.95        | "December" | 2024 | 0.41          |
       | 850.55      | "February" | 2026 | 23.63         |
       | 5555.55     | "November" | 2026 | 123.46        |
-
-
-
-
-
-
-
-  #Confirm Button (new feature)
-    #Click on Confirm so it does nothing
