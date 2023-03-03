@@ -46,7 +46,7 @@ public class SavingSimulationPage extends BasePage {
 
     public Double getMonthlyAmount() {
         String text = monthlyAmountLabel.getText();
-        String amount = text.substring(text.indexOf("$") + 1);
+        String amount = text.substring(text.indexOf("$") + 1).replace(",", "");;
         return Double.parseDouble(amount);
     }
 
@@ -57,7 +57,7 @@ public class SavingSimulationPage extends BasePage {
 
     public Double getTotalAmount() {
         String goalText = getResultLabelText("$");
-        String goalValue = goalText.replace("$", "");
+        String goalValue = goalText.replace("$", "").replace(",", "");;
         return Double.parseDouble(goalValue);
     }
 
