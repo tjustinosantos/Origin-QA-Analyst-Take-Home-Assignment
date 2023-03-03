@@ -18,6 +18,9 @@ public class Stepdefs {
 
     WebDriver driver;
 
+    private String month;
+    private int year;
+
     @Before
     public void startUp() throws MalformedURLException {
         this.driver = new ChromeDriver();
@@ -43,6 +46,8 @@ public class Stepdefs {
 
     @When("I set a reachable goal by month {string} and year {int}")
     public void I_set_total_amount_as(String month, int year) throws Throwable {
+        this.month = month;
+        this.year = year;
         SavingSimulationPage savingSimulationPage = new SavingSimulationPage(driver);
         savingSimulationPage.advanceToMonth(getMonthDifferenceFromNow(year, month));
     }
@@ -53,7 +58,10 @@ public class Stepdefs {
         Assert.assertEquals(monthlyAmount,savingSimulationPage.getMonthlyAmount());
     }
 
-
-
+    @Then("the number of monthly deposits are correct")
+    public void the_number_of_monthly_deposits_are_correct() throws Throwable {
+        SavingSimulationPage savingSimulationPage = new SavingSimulationPage(driver);
+        Assert.assertEquals(getMonthDifferenceFromNow(year, month),savingSimulationPage.getNumberOfMonthlyDeposits());
+    }
 }
 
