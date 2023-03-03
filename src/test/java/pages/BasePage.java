@@ -12,9 +12,4 @@ public class BasePage {
         this.driver = driver;
     }
 
-    public WebDriverWait getElementWaiter(int seconds) {
-        Duration durationInSeconds = Duration.ofSeconds(seconds);
-        WebDriverWait wait = new WebDriverWait(driver, durationInSeconds);
-        return wait;
-    }
 }
