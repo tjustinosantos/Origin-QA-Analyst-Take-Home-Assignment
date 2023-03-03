@@ -10,6 +10,7 @@ import io.cucumber.java.en.When;
 import java.net.MalformedURLException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.WebDriver;
+import org.junit.Assert;
 
 import static pages.Helper.getMonthDifferenceFromNow;
 
@@ -45,5 +46,14 @@ public class Stepdefs {
         SavingSimulationPage savingSimulationPage = new SavingSimulationPage(driver);
         savingSimulationPage.advanceToMonth(getMonthDifferenceFromNow(year, month));
     }
+
+    @Then("the Monthly amount is {double} value")
+    public void the_monthly_amount_is(Double monthlyAmount) throws Throwable {
+        SavingSimulationPage savingSimulationPage = new SavingSimulationPage(driver);
+        Assert.assertEquals(monthlyAmount,savingSimulationPage.getMonthlyAmount());
+    }
+
+
+
 }
 
