@@ -20,6 +20,7 @@ public class Stepdefs {
 
     private String month;
     private int year;
+    private Double totalAmount;
 
     @Before
     public void startUp() throws MalformedURLException {
@@ -41,6 +42,7 @@ public class Stepdefs {
     @When("I set Total Amount as {double}")
     public void I_set_total_amount_as(double totalAmount) throws Throwable {
         SavingSimulationPage savingSimulationPage = new SavingSimulationPage(driver);
+        this.totalAmount = totalAmount;
         savingSimulationPage.inputTotalAmount(totalAmount);
     }
 
@@ -63,5 +65,12 @@ public class Stepdefs {
         SavingSimulationPage savingSimulationPage = new SavingSimulationPage(driver);
         Assert.assertEquals(getMonthDifferenceFromNow(year, month),savingSimulationPage.getNumberOfMonthlyDeposits());
     }
+
+    @Then("the value to reach my goal is {double}")
+    public void the_number_of_monthly_deposits_are_correct(Double totalAmount) throws Throwable {
+        SavingSimulationPage savingSimulationPage = new SavingSimulationPage(driver);
+        Assert.assertEquals(this.totalAmount,savingSimulationPage.getTotalAmount());
+    }
+
 }
 

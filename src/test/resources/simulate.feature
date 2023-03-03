@@ -6,6 +6,7 @@ Feature: Simulate Buying a house Test
     And I set a reachable goal by month <month> and year <year>
     Then the Monthly amount is <monthlyAmount> value
     And the number of monthly deposits are correct
+    And the value to reach my goal is <totalAmount>
     Examples:
       | totalAmount | month | year | monthlyAmount |
       | 100.23      |"November"| 2024 |     4.77      |

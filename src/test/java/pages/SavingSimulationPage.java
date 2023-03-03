@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.List;
 
-public class SavingSimulationPage extends BasePage{
+public class SavingSimulationPage extends BasePage {
 
 
     private final By totalAmountTextBoxSelector = By.xpath("//*[@id=\"root\"]/div[2]/div/div[2]/div[1]/div/div/input");
@@ -16,27 +16,25 @@ public class SavingSimulationPage extends BasePage{
     private final By resultLabelElementSelector = By.xpath("//*[@id=\"root\"]/div[2]/div/div[3]/div/div[2]/div/p/span");
 
 
-
-
     public SavingSimulationPage(WebDriver driver) {
         super(driver);
     }
 
-    public SavingSimulationPage navigateTo(String url){
+    public SavingSimulationPage navigateTo(String url) {
         driver.navigate().to(url);
         return new SavingSimulationPage(driver);
     }
 
-    public SavingSimulationPage inputTotalAmount(double totalAmount){
+    public SavingSimulationPage inputTotalAmount(double totalAmount) {
         WebElement totalAmountTextBox = driver.findElement(totalAmountTextBoxSelector);
         totalAmountTextBox.sendKeys(String.valueOf(totalAmount));
         return new SavingSimulationPage(driver);
     }
 
-    public SavingSimulationPage advanceToMonth(int monthsAhead){
-        int aux=1;
+    public SavingSimulationPage advanceToMonth(int monthsAhead) {
+        int aux = 1;
         WebElement advanceMonthButton = driver.findElement(advanceMonthButtonElementSelector);
-        if(monthsAhead!=1) {
+        if (monthsAhead != 1) {
             do {
                 aux++;
                 advanceMonthButton.click();
@@ -45,31 +43,38 @@ public class SavingSimulationPage extends BasePage{
         return new SavingSimulationPage(driver);
     }
 
-    public Double getMonthlyAmount(){
+    public Double getMonthlyAmount() {
         WebElement monthlyAmountLabel = driver.findElement(monthlyAmountLabelSelector);
         // remove $ sign from captured value and convert to Double
-        return  Double.parseDouble(monthlyAmountLabel.getText().substring(1));
+        return Double.parseDouble(monthlyAmountLabel.getText().substring(1));
     }
 
     public int getNumberOfMonthlyDeposits() {
         return Integer.valueOf(resultLabelExtractor("monthly deposits"));
     }
 
-    public String resultLabelExtractor(String wantedResult){
+    public Double getTotalAmount() {
+        return Double.parseDouble((resultLabelExtractor("goal")));
+    }
+
+
+    public String resultLabelExtractor(String wantedResult) {
         List<WebElement> resultsList = driver.findElements(resultLabelElementSelector);
-        String extractedText= null;
+        String extractedText = null;
         switch (wantedResult) {
-                case "monthly deposits":
-                    extractedText =  resultsList.get(0).getText().replaceAll("[^\\d]", "").replaceAll("[^\\d]", "");
-                    break;
-                case "goal":
-                    extractedText = resultsList.get(1).getText();
-                    break;
-                case "date":
-                    extractedText = resultsList.get(2).getText();
+            case "monthly deposits":
+                extractedText = resultsList.get(0).getText().replaceAll("[^\\d]", "").replaceAll("[^\\d]", "");
+                break;
+            case "goal":
+                extractedText = resultsList.get(1).getText().substring(1);
+                break;
+            case "date":
+                extractedText = resultsList.get(2).getText();
                 break;
 
         }
+        System.out.println("Extracted = " + extractedText);
         return extractedText;
     }
 }
+
