@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.junit.Assert;
 import pages.SavingSimulationPage;
 import static pages.Helper.getMonthDifferenceFromNow;
+import static pages.Helper.getCurrentMonth;
 
 public class Stepdefs {
 
@@ -54,6 +55,20 @@ public class Stepdefs {
         savingSimulationPage.advanceToMonth(getMonthDifferenceFromNow(year, month));
     }
 
+    @When("I try to move back a month")
+    public void iTryToMoveBackAMonth() {
+        savingSimulationPage.advanceAMonth();
+    }
+
+    @When("I try to move forward a month")
+    public void iTryToMoveBackAMonth() {
+        savingSimulationPage.goBackAMonth();
+    }
+
+    @Then("the month should not be changed, still set as the current one")
+    public void theTotalAmountIsStillEmptyByIgnoringTheInput() {
+        Assert.assertEquals(getCurrentMonth(), savingSimulationPage.getCurrentMonth());
+    }
     @Then("the Total Amount is still empty by ignoring the input")
     public void theTotalAmountIsStillEmptyByIgnoringTheInput() {
         Assert.assertTrue(savingSimulationPage.totalAmountIsEmpty());

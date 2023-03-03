@@ -24,4 +24,9 @@ public class Helper {
         return Math.abs(monthsDiff)+1;
     }
 
+    public static String getCurrentMonth(){
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter monthFormatter = DateTimeFormatter.ofPattern("MMMM");
+        return currentDate.format(monthFormatter);
+    }
 }

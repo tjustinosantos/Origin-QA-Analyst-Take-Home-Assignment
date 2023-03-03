@@ -1,4 +1,4 @@
-Feature: Simulate a Saving Goal to Buy a House
+Feature: Simulate a Saving Goal to Buy a House (Core Calculation)
 
   Scenario Outline: Core calculation for different totalAmounts, months and years
     Given I access the saving simulation page
@@ -22,15 +22,8 @@ Feature: Simulate a Saving Goal to Buy a House
 
 
 
-  #Money input
-  #Allow only numbers
-  #Display the value formatted as money (e.g 3500.45 should be 3,500.44)
-
- #Date input
-  #Allow only future months
 
 
-    #On focus, the users should be able to move the months by typing the Left and Right arrow keys on the keyboard
 
-   #Confirm Button
-     #Click on Confirm so it does nothing
+  #Confirm Button (new feature)
+    #Click on Confirm so it does nothing

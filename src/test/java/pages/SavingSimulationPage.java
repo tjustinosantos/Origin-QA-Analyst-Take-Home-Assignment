@@ -13,6 +13,12 @@ public class SavingSimulationPage extends BasePage {
     @FindBy(css = "[data-testid='reachDateIncrement']")
     private WebElement advanceMonthButton;
 
+    @FindBy(css = "[data-testid='reachDateDecrement']")
+    private WebElement goBackMonthButton;
+
+    @FindBy(css = "[data-testid='reachDateMonth']")
+    private WebElement reachDateMonthSelector;
+
     @FindBy(xpath = "//*[@id=\"root\"]/div[2]/div/div[2]/div[1]/div/div/input")
     private WebElement totalAmountTextBox;
 
@@ -95,5 +101,17 @@ public class SavingSimulationPage extends BasePage {
         }else{
             return false;
         }
+    }
+
+    public void advanceAMonth() {
+        advanceMonthButton.click();
+    }
+
+    public void goBackAMonth() {
+        goBackMonthButton.click();
+    }
+
+    public String getCurrentMonth() {
+        return reachDateMonthSelector.getText();
     }
 }
